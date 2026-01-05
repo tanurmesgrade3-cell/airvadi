@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aesthetica - Digital Art Marketplace</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for the desired aesthetic -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#050711', // Very deep navy/black for background
+                        'accent-1': '#6366f1', // Indigo primary
+                        'card-bg': '#1f2937', // Dark slate for cards
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Apply custom font globally and ensure full height */
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+        }
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #6366f1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #0f172a;
+        }
+        /* Hover effect for art cards */
+        .art-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .art-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); /* Accent shadow */
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-100 antialiased">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-dark-bg/90 backdrop-blur-sm border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-3xl font-extrabold text-accent-1 tracking-wider">
+                        AESTHETICA
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-300 hover:text-accent-1 transition duration-150">Home</a>
+                    <a href="#" class="text-gray-300 hover:text-accent-1 transition duration-150 font-semibold border-b-2 border-accent-1">Explore</a>
+                    <a href="#" class="text-gray-300 hover:text-accent-1 transition duration-150">Artists</a>
+                    <a href="#" class="text-gray-300 hover:text-accent-1 transition duration-150">Market</a>
+                    <a href="#" class="text-gray-300 hover:text-accent-1 transition duration-150">About</a>
+                </nav>
+
+                <!-- Action Button / Mobile Menu Toggle -->
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-accent-1 hover:bg-indigo-700 transition duration-150">
+                        Connect Wallet
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition duration-150">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-800">Home</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700">Explore</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700">Artists</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700">Market</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700">About</a>
+                <button class="w-full mt-2 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-accent-1 hover:bg-indigo-700 transition duration-150">
+                    Connect Wallet
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <!-- Hero Section: Featured Artwork -->
+        <section class="mb-20 bg-card-bg rounded-xl shadow-2xl overflow-hidden p-6 md:p-12 border border-gray-800">
+            <div class="md:flex md:space-x-12 items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+                        Discover & Collect <span class="text-accent-1">Digital Masterpieces</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 mb-8">
+                        The curated marketplace for next-generation art. Explore unique styles from the world's most innovative digital creators.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="inline-flex justify-center items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-lg text-white bg-accent-1 hover:bg-indigo-700 transition duration-200 transform hover:scale-105">
+                            Start Exploring
+                        </a>
+                        <a href="#" class="inline-flex justify-center items-center px-8 py-3 border border-gray-600 text-base font-medium rounded-xl text-gray-300 hover:bg-gray-800 transition duration-200">
+                            Become an Artist
+                        </a>
+                    </div>
+                </div>
+                <!-- Featured Image Placeholder -->
+                <div class="md:w-1/2">
+                    <img src="https://placehold.co/600x400/29007A/FFFFFF?text=Featured+Art+-+Abstract+Vapor" 
+                         alt="Featured digital art piece" 
+                         class="rounded-xl object-cover w-full shadow-2xl border-4 border-gray-700 transition duration-500 hover:shadow-accent-1/50"
+                         onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/d1d5db?text=Image+Unavailable';">
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section: Trending Art -->
+        <section class="mb-20">
+            <h2 class="text-4xl font-bold mb-8 text-center md:text-left">Trending Artworks</h2>
+            
+            <!-- Art Filter/Sort Bar -->
+            <div class="flex justify-between items-center mb-6 p-4 rounded-lg bg-gray-800 border border-gray-700">
+                <div class="text-sm text-gray-400 hidden sm:block">
+                    Showing 12 of 2,450 results
+                </div>
+                <div class="flex space-x-3 items-center">
+                    <label for="sort" class="text-sm text-gray-300">Sort by:</label>
+                    <select id="sort" class="bg-gray-700 border border-gray-600 text-gray-300 text-sm rounded-lg focus:ring-accent-1 focus:border-accent-1 p-2">
+                        <option>Recently Added</option>
+                        <option>Top Sales</option>
+                        <option>Price: Low to High</option>
+                        <option>Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Responsive Art Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Mock Art Card 1 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/1e293b/d1d5db?text=Cyber+Cityscape" 
+                         alt="Artwork 1" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Cyber Cityscape</h3>
+                        <p class="text-sm text-gray-400">By Aurora_Aether</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">0.85 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock Art Card 2 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/333333/00BFFF?text=Abstract+Flow+%2F+3D" 
+                         alt="Artwork 2" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Abstract Flow</h3>
+                        <p class="text-sm text-gray-400">By GeoMetrician</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">1.2 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock Art Card 3 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/2a1c4e/e0e7ff?text=Pixel+Portrait+%2F+Retro" 
+                         alt="Artwork 3" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Pixel Glitch</h3>
+                        <p class="text-sm text-gray-400">By 8BitDreamer</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">0.45 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock Art Card 4 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/0f172a/f97316?text=Sci-Fi+Landscape" 
+                         alt="Artwork 4" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Nebula Gates</h3>
+                        <p class="text-sm text-gray-400">By StellarWanderer</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">2.1 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mock Art Card 5 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/4c4c4c/f0f0f0?text=Monochrome+Sketch" 
+                         alt="Artwork 5" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Depth of Field</h3>
+                        <p class="text-sm text-gray-400">By PencilMaster</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">0.65 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock Art Card 6 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/004d40/ccff90?text=Minimalist+Design" 
+                         alt="Artwork 6" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Green Grid</h3>
+                        <p class="text-sm text-gray-400">By VectorSynth</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">0.3 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mock Art Card 7 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/581c87/e9d5ff?text=Vibrant+Illustration" 
+                         alt="Artwork 7" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">Violet Dreams</h3>
+                        <p class="text-sm text-gray-400">By CosmicBloom</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">1.5 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mock Art Card 8 -->
+                <div class="art-card bg-card-bg rounded-xl overflow-hidden shadow-lg hover:shadow-xl">
+                    <img src="https://placehold.co/400x400/6b21a8/f0f9ff?text=Generative+Code+Art" 
+                         alt="Artwork 8" class="w-full h-auto object-cover transition duration-300 transform hover:scale-[1.03]">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-50 mb-1">The Algorithm</h3>
+                        <p class="text-sm text-gray-400">By CodeArtist</p>
+                        <div class="flex justify-between items-center mt-3">
+                            <span class="text-lg font-bold text-green-400">0.9 ETH</span>
+                            <button class="text-sm text-accent-1 hover:text-indigo-400 font-medium">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="inline-flex items-center px-6 py-3 border border-accent-1 text-base font-medium rounded-xl text-accent-1 hover:bg-accent-1 hover:text-white transition duration-200">
+                    Load More Artworks
+                </button>
+            </div>
+        </section>
+        
+        <!-- CTA Section: Join the Community -->
+        <section class="mb-12 p-10 bg-gray-800 rounded-xl shadow-inner border border-gray-700 text-center">
+            <h3 class="text-3xl font-bold mb-3">Join the Creator Community</h3>
+            <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
+                Sign up to discover exclusive drops, follow your favorite artists, and be the first to know about new collections.
+            </p>
+            <div class="flex justify-center">
+                <input type="email" placeholder="Enter your email address" class="w-full max-w-sm px-4 py-3 rounded-l-lg bg-gray-700 border border-gray-600 text-white focus:ring-accent-1 focus:border-accent-1">
+                <button class="px-6 py-3 bg-accent-1 text-white font-semibold rounded-r-lg hover:bg-indigo-700 transition duration-150">
+                    Subscribe
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-white">Marketplace</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-accent-1">All Art</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Collections</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Pricing</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Latest Drops</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-white">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-accent-1">About Us</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Careers</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Blog</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-3 text-white">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-accent-1">Help Center</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-accent-1">Security</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="text-xl font-extrabold text-accent-1 mb-3">AESTHETICA</h4>
+                    <p class="text-sm text-gray-400">
+                        Curating the finest digital art since 2024.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-500">
+                &copy; 2024 Aesthetica, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            menuButton.addEventListener('click', () => {
+                // Toggle visibility based on the 'hidden' Tailwind class
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
